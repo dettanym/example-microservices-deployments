@@ -1,0 +1,6 @@
+[submodule "microservices-demo"]
+	path = microservices-demo
+	url = https://github.com/GoogleCloudPlatform/microservices-demo.git
+[submodule "online-boutique"]
+	path = online-boutique
+	url = https://github.com/GoogleCloudPlatform/microservices-demo.git
