@@ -17,7 +17,15 @@ sleep 5 && kubectl get pods --namespace="sock-shop"
 #helm install --name sitewhere --set persistence.storageClass=hostpath ./sitewhere
 #This sitewhere-recipes repo is deprecated in favour of sitewhere-k8s
 #https://github.com/sitewhere/sitewhere-k8s/tree/master/charts
-#TODO: Check this repo out to setup sitewhere. 
+helm repo add cetic https://cetic.github.io/helm-charts
+helm repo update
+#This command requires updating sitewhere-infrastructure/Charts.yaml with: 
+#    version: 12.2.1 (postgres, line 37)
+#    version: 17.8.0 (redis, line 49)
+cd sitewhere-k8s/charts && helm dep update ./sitewhere-infrastructure/ #instead of sitewhere-infrastructure-min/ 
+#TODO: This command throws a Chart.yaml file is missing error. 
+# cd sitewhere-k8s/charts/sitewhere-infrastructure/ && \ 
+#   helm install sitewhere-crds crds/. && \ #Drop --name flag 
+#   helm install sitewhere-templates templates/. && \ 
 
-
-
+# kubectl label namespace sitewhere istio-injection=enabled
