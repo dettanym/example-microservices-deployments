@@ -10,3 +10,6 @@
 [submodule "sitewhere"]
 	path = sitewhere
 	url = https://github.com/sitewhere/sitewhere.git
+[submodule "sockshop"]
+	path = sockshop
+	url = https://github.com/microservices-demo/microservices-demo
