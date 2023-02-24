@@ -14,8 +14,10 @@ sleep 5 && kubectl get pods --namespace="sock-shop"
 
 #For sitewhere
 #From https://github.com/sitewhere/sitewhere-recipes/tree/master/charts#helm-charts-for-running-sitewhere-20
-helm install --name sitewhere --set persistence.storageClass=hostpath ./sitewhere
-
+#helm install --name sitewhere --set persistence.storageClass=hostpath ./sitewhere
+#This sitewhere-recipes repo is deprecated in favour of sitewhere-k8s
+#https://github.com/sitewhere/sitewhere-k8s/tree/master/charts
+#TODO: Check this repo out to setup sitewhere. 
 
 
 
