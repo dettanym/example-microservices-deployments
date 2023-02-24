@@ -4,3 +4,6 @@
 [submodule "online-boutique"]
 	path = online-boutique
 	url = https://github.com/GoogleCloudPlatform/microservices-demo.git
+[submodule "pitstop"]
+	path = pitstop
+	url = https://github.com/EdwinVW/pitstop.git
