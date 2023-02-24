@@ -7,3 +7,6 @@
 [submodule "pitstop"]
 	path = pitstop
 	url = https://github.com/EdwinVW/pitstop.git
+[submodule "sitewhere"]
+	path = sitewhere
+	url = https://github.com/sitewhere/sitewhere.git
