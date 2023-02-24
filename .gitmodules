@@ -13,3 +13,6 @@
 [submodule "sockshop"]
 	path = sockshop
 	url = https://github.com/microservices-demo/microservices-demo
+[submodule "sitewhere-k8s"]
+	path = sitewhere-k8s
+	url = https://github.com/sitewhere/sitewhere-k8s.git
