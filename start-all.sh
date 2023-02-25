@@ -12,20 +12,18 @@ kubectl apply -f deploy/kubernetes/manifests-jaeger && \
 #Wait for all the Sock Shop services to start:
 sleep 5 && kubectl get pods --namespace="sock-shop"
 
-#For sitewhere
-#From https://github.com/sitewhere/sitewhere-recipes/tree/master/charts#helm-charts-for-running-sitewhere-20
-#helm install --name sitewhere --set persistence.storageClass=hostpath ./sitewhere
-#This sitewhere-recipes repo is deprecated in favour of sitewhere-k8s
-#https://github.com/sitewhere/sitewhere-k8s/tree/master/charts
-helm repo add cetic https://cetic.github.io/helm-charts
+#For sitewhere --- abandonware 
+#From https://github.com/sitewhere/sitewhere-k8s/tree/master/charts/sitewhere#add-sitewhere-helm 
+helm repo add sitewhere-repo https://sitewhere.io/helm-charts
 helm repo update
-#This command requires updating sitewhere-infrastructure/Charts.yaml with: 
-#    version: 12.2.1 (postgres, line 37)
-#    version: 17.8.0 (redis, line 49)
-cd sitewhere-k8s/charts && helm dep update ./sitewhere-infrastructure/ #instead of sitewhere-infrastructure-min/ 
-#TODO: This command throws a Chart.yaml file is missing error. 
-# cd sitewhere-k8s/charts/sitewhere-infrastructure/ && \ 
-#   helm install sitewhere-crds crds/. && \ #Drop --name flag 
-#   helm install sitewhere-templates templates/. && \ 
-
-# kubectl label namespace sitewhere istio-injection=enabled
+#From https://github.com/sitewhere/sitewhere-k8s/tree/master/charts/sitewhere-infrastructure#installing-the-chart
+helm install sitewhere-infra-instance -n sitewhere-system --create-namespace sitewhere-repo/sitewhere-infrastructure 
+helm install sitewhere-instance -n sitewhere --create-namespace sitewhere-repo/sitewhere
+#Both comamnds threw up errors as the CRDs have an older version (v1beta versus more recent v1)
+#Error: INSTALLATION FAILED: failed to install CRD crds/040-Crd-kafka.yaml: resource mapping not found for name: 
+#"kafkas.kafka.strimzi.io" namespace: "" from "": no matches for kind "CustomResourceDefinition" in version "apiextensions.k8s.io/v1beta1"
+#ensure CRDs are installed first
+#Error: INSTALLATION FAILED: unable to build kubernetes objects from release manifest: [resource mapping not found for name:
+#"sitewhere-instance-cp-zookeeper-pdb" namespace: "" from "": no matches for kind "PodDisruptionBudget" in version "policy/v1beta1"
+#The errors can be addressed by forking the sitewhere-k8s repo, making changes and pointing the submodule to our fork. 
+#Changes can be made using grep (v1beta with v1) or using helm templates for a more context-aware replacement. 
