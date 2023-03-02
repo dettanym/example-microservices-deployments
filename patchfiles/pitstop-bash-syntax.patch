@@ -1,0 +1,13 @@
+diff --git a/src/k8s/start-all.sh b/src/k8s/start-all.sh
+index fc3ddf6..69b9471 100755
+--- a/src/k8s/start-all.sh
++++ b/src/k8s/start-all.sh
+@@ -6,7 +6,7 @@
+ 
+ MESHPOSTFIX=''
+ 
+-if [ "$1" != "--nomesh" and  "$1" != "--istio" and "$1" != "--linkerd" ]
++if [[ "$1" != "--nomesh" &&  "$1" != "--istio" && "$1" != "--linkerd" ]]
+ then
+     echo "Error: You must specify how to start Pitstop:"
+     echo "  start-all.ps1 < --nomesh | --istio | --linkerd >."

@@ -27,6 +27,8 @@ jobs:
         run: | 
           git apply --directory=sockshop patchfiles/sockshop-nodeports.patch
           git apply -R --directory=sockshop patchfiles/sockshop-nodeports.patch
+          git apply --directory=pitstop patchfiles/pitstop-bash-syntax.patch
+          git apply -R --directory=pitstop patchfiles/pitstop-bash-syntax.patch     
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:

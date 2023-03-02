@@ -2,8 +2,11 @@
 kubectl apply -f online-boutique/release/kubernetes-manifests.yaml
 
 #For pitstop: from https://github.com/EdwinVW/pitstop/wiki/Run%20the%20application%20on%20Kubernetes
-cd pitstop/src/k8s && ./start-all.sh --nomesh 
+git apply --directory=pitstop patchfiles/pitstop-bash-syntax.patch
+cd pitstop/src/k8s
+bash ./start-all.sh --nomesh
 cd ../../../
+git apply -R --directory=pitstop patchfiles/pitstop-bash-syntax.patch
 
 #For sockshop: from https://microservices-demo.github.io/deployment/kubernetes-minikube.html
 #Deploy the Sock Shop application on Minikube
