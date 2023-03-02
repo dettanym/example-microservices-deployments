@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
 #For online boutique
 kubectl apply -f online-boutique/release/kubernetes-manifests.yaml
 
