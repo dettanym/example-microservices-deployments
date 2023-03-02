@@ -8,12 +8,14 @@ cd ../../../
 
 #For sockshop: from https://microservices-demo.github.io/deployment/kubernetes-minikube.html
 #Deploy the Sock Shop application on Minikube
+git apply --directory=sockshop patchfiles/sockshop-nodeports.patch
 cd sockshop && kubectl create -f deploy/kubernetes/manifests && \
 #To start Opentracing run the following command after deploying the sock shop
 kubectl apply -f deploy/kubernetes/manifests-jaeger && \
 #Wait for all the Sock Shop services to start:
 sleep 5 && kubectl get pods --namespace="sock-shop"
 cd ../
+git apply -R --directory=sockshop patchfiles/sockshop-nodeports.patch
 
 # For sitewhere --- abandonware 
 # From https://github.com/sitewhere/sitewhere-k8s/tree/master/charts/sitewhere#add-sitewhere-helm 

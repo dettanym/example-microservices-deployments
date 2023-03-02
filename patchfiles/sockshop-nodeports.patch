@@ -1,0 +1,37 @@
+diff --git a/deploy/kubernetes/complete-demo.yaml b/deploy/kubernetes/complete-demo.yaml
+index 457f09f..4e85747 100644
+--- a/deploy/kubernetes/complete-demo.yaml
++++ b/deploy/kubernetes/complete-demo.yaml
+@@ -314,7 +314,7 @@ spec:
+   ports:
+   - port: 80
+     targetPort: 8079
+-    nodePort: 30001
++    nodePort: 30999
+   selector:
+     name: front-end
+ ---
+diff --git a/deploy/kubernetes/helm-chart/templates/front-end-svc.yaml b/deploy/kubernetes/helm-chart/templates/front-end-svc.yaml
+index c3d395f..18e5188 100644
+--- a/deploy/kubernetes/helm-chart/templates/front-end-svc.yaml
++++ b/deploy/kubernetes/helm-chart/templates/front-end-svc.yaml
+@@ -10,6 +10,6 @@ spec:
+   ports:
+   - port: 80
+     targetPort: 8079
+-    nodePort: 30001
++    nodePort: 30999
+   selector:
+     name: front-end
+diff --git a/deploy/kubernetes/manifests/10-front-end-svc.yaml b/deploy/kubernetes/manifests/10-front-end-svc.yaml
+index eb9332a..bd64e01 100644
+--- a/deploy/kubernetes/manifests/10-front-end-svc.yaml
++++ b/deploy/kubernetes/manifests/10-front-end-svc.yaml
+@@ -13,6 +13,6 @@ spec:
+   ports:
+   - port: 80
+     targetPort: 8079
+-    nodePort: 30001
++    nodePort: 30999
+   selector:
+     name: front-end
