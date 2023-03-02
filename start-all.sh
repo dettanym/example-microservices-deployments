@@ -11,8 +11,6 @@ git apply --directory=sockshop patchfiles/sockshop-nodeports.patch
 kubectl create -f sockshop/deploy/kubernetes/manifests
 #To start Opentracing run the following command after deploying the sock shop
 kubectl create -f sockshop/deploy/kubernetes/manifests-jaeger
-#Wait for all the Sock Shop services to start:
-sleep 5 && kubectl get pods --namespace="sock-shop"
 git apply -R --directory=sockshop patchfiles/sockshop-nodeports.patch
 
 # For sitewhere --- abandonware 
