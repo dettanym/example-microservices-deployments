@@ -1,0 +1,33 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  sync:
+    name: 'Submodules Sync'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Git Submodule Update
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
+
+      - name: Test Git apply patch
+        run: | 
+          git apply --directory=sockshop patchfiles/sockshop-nodeports.patch
+          git apply -R --directory=sockshop patchfiles/sockshop-nodeports.patch
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: update all submodules'
