@@ -1,8 +1,10 @@
 #For online boutique
-cd online-boutique && kubectl apply -f release/kubernetes-manifests.yaml
+cd online-boutique && kubectl apply -f release/kubernetes-manifests.yaml 
+cd ../ 
 
 #For pitstop: from https://github.com/EdwinVW/pitstop/wiki/Run%20the%20application%20on%20Kubernetes
-cd pitstop/src/k8s && ./start-all.sh --nomesh
+cd pitstop/src/k8s && ./start-all.sh --nomesh 
+cd ../../../
 
 #For sockshop: from https://microservices-demo.github.io/deployment/kubernetes-minikube.html
 #Deploy the Sock Shop application on Minikube
@@ -11,6 +13,7 @@ cd sockshop && kubectl create -f deploy/kubernetes/manifests && \
 kubectl apply -f deploy/kubernetes/manifests-jaeger && \
 #Wait for all the Sock Shop services to start:
 sleep 5 && kubectl get pods --namespace="sock-shop"
+cd ../
 
 # For sitewhere --- abandonware 
 # From https://github.com/sitewhere/sitewhere-k8s/tree/master/charts/sitewhere#add-sitewhere-helm 
