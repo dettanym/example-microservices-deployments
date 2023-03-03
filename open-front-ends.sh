@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
 function get_external_ip_port {
   kubectl get svc -n $1 $2 -o=jsonpath='{.status.loadBalancer.ingress[0].ip}:{.spec.ports[0].port}'
 }
